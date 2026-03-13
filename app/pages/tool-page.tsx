@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+import { ToolFavoriteButton } from "@/components/tool-favorite-button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ToolIcon } from "@/components/tool-icon";
@@ -34,10 +35,18 @@ export function ToolPage({
           <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background sm:size-12">
             <ToolIcon slug={tool.slug} className="size-5" />
           </div>
-          <div className="min-w-0 space-y-3">
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-              {tool.title[locale]}
-            </h1>
+          <div className="min-w-0 flex-1 space-y-3">
+            <div className="flex items-start justify-between gap-3">
+              <h1 className="min-w-0 flex-1 text-3xl font-semibold tracking-tight sm:text-4xl">
+                {tool.title[locale]}
+              </h1>
+              <ToolFavoriteButton
+                slug={tool.slug}
+                locale={locale}
+                title={tool.title[locale]}
+                className="size-10"
+              />
+            </div>
             <p className="max-w-3xl text-base leading-7 text-muted-foreground">
               {tool.description[locale]}
             </p>
