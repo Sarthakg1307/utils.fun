@@ -6,13 +6,7 @@
 
 Many toolbox sites are not short on pages. The real issue is that the tools people use most often are hard to find, overloaded with noise, or not reliable enough for repeat use. `Utils.fun` is designed as a cleaner long-term foundation instead of a pile of loosely related utilities.
 
-The project currently follows these principles:
-
-- Local first: handle transformations and calculations in the browser whenever possible
-- High-frequency use cases first: focus on practical tools for development, text, time, image, finance, and encoding tasks
-- Shared data model: the homepage, search, sidebar, and detail pages all read from the same tool metadata
-- Consistent bilingual UX: Chinese and English content are maintained together across routes and docs
-- Easy expansion: adding a new tool should mainly touch metadata, icon mapping, and the workbench registry
+![Utils.fun](./docs/index.png)
 
 ## Highlights
 
