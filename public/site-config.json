@@ -1,0 +1,14 @@
+{
+  "title": "Utils.fun",
+  "titleSeparator": " - ",
+  "description": "A clean online toolbox for development, text, time, image, encoding, and quick generation tasks.",
+  "url": "https://utils.fun",
+  "logo": {
+    "src": "/favicon.ico",
+    "alt": "Utils.fun logo",
+    "width": 36,
+    "height": 36
+  },
+  "footerHtml": "<p>&copy; 2026 Utils.fun. All rights reserved.</p>",
+  "githubUrl": "https://github.com/Licoy/utils.fun"
+}
