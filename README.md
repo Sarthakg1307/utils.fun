@@ -25,7 +25,7 @@
 - 默认中文，英文使用独立 `/en` 路由，同时保留统一的页面结构
 - 文本、开发、换算、编码、财务、图片等多数工具在浏览器端本地运行
 - 代码类工具使用 `Monaco Editor` 承载，适合 JSON、SQL、HTML、CSS、JS 等场景
-- 站点品牌信息集中放在 `public/site-config.json`，构建后仍可单独修改
+- 站点品牌信息集中放在根目录 `site.config.ts`，便于统一维护品牌与基础信息
 - 桌面端与移动端共用一套工具目录和交互模型，降低维护成本
 
 ## 工具分类
@@ -105,8 +105,8 @@ npm run build
 │  ├─ site.ts
 │  └─ tools.ts
 ├─ public/
-│  ├─ favicon.ico
-│  └─ site-config.json
+│  └─ favicon.ico
+├─ site.config.ts
 └─ package.json
 ```
 
@@ -118,7 +118,7 @@ npm run build
 - `app/pages/tool-page.tsx`：工具详情页头部与工作区编排
 - `lib/i18n.ts`：站点级通用文案字典
 - `lib/locale.ts`：中英文路由构建与语言偏好持久化
-- `public/site-config.json`：站点标题、描述、Logo、页脚和仓库地址的运行时配置文件
+- `site.config.ts`：站点标题、描述、Logo、页脚和仓库地址配置
 
 ## 双语与路由约定
 
@@ -139,7 +139,7 @@ npm run build
 
 ## 站点配置
 
-站点级品牌与基础信息统一放在 `public/site-config.json`，它会在运行时读取，因此构建完成后仍然可以直接修改：
+站点级品牌与基础信息统一放在根目录 `site.config.ts`：
 
 - `title`：站点标题
 - `titleSeparator`：页面标题连接符
@@ -149,11 +149,7 @@ npm run build
 - `footerHtml`：页脚 HTML
 - `githubUrl`：GitHub 仓库地址
 
-部署后的使用方式：
-
-- 默认配置文件路径是 `public/site-config.json`
-- 修改这个文件后，重新启动服务即可应用新配置
-- 如果你想放到别的位置，也可以通过 `SITE_CONFIG_PATH` 指定自定义配置文件路径
+修改这些配置后，需要重新执行 `npm run build`，再启动生产服务。
 
 ## 贡献建议
 

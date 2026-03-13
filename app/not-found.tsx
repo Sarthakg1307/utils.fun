@@ -1,11 +1,9 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { getSiteConfig } from "@/lib/site.server";
+import { siteConfig } from "@/lib/site";
 
-export default async function NotFound() {
-  const siteConfig = await getSiteConfig();
-
+export default function NotFound() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-6 px-4 text-center">
       <p className="rounded-md border px-3 py-1 text-sm text-muted-foreground">

@@ -13,8 +13,8 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { ToolSearchDialog } from "@/components/tool-search-dialog";
 import { Button } from "@/components/ui/button";
 import { type PathPrefix } from "@/lib/locale";
+import { siteConfig } from "@/lib/site";
 import { type Locale } from "@/lib/tools";
-import { useSiteConfig } from "@/components/providers/site-config-provider";
 
 export function SiteHeader({
   locale,
@@ -60,7 +60,6 @@ export function SiteHeader({
   mobileNavigationTitle?: string;
 }) {
   const activePathname = usePathname() ?? pathname ?? homePath;
-  const siteConfig = useSiteConfig();
 
   return (
     <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur-xl">

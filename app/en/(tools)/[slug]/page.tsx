@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { ToolPage } from "@/app/pages/tool-page";
 import { getTool, tools } from "@/lib/tools";
-import { getSiteConfig } from "@/lib/site.server";
 import { buildAbsoluteUrl } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -17,7 +16,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const tool = getTool(slug);
-  const siteConfig = await getSiteConfig();
   if (!tool) {
     return {};
   }
@@ -26,9 +24,9 @@ export async function generateMetadata({
     title: tool.title.en,
     description: tool.description.en,
     alternates: {
-      canonical: buildAbsoluteUrl(siteConfig, `/en/${tool.slug}`),
+      canonical: buildAbsoluteUrl(`/en/${tool.slug}`),
       languages: {
-        "zh-CN": buildAbsoluteUrl(siteConfig, `/${tool.slug}`),
+        "zh-CN": buildAbsoluteUrl(`/${tool.slug}`),
       },
     },
   };

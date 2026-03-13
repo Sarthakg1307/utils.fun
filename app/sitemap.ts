@@ -1,31 +1,28 @@
 import type { MetadataRoute } from "next";
 
 import { tools } from "@/lib/tools";
-import { getSiteConfig } from "@/lib/site.server";
 import { buildAbsoluteUrl } from "@/lib/site";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteConfig = await getSiteConfig();
-
+export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: buildAbsoluteUrl(siteConfig, "/"),
+      url: buildAbsoluteUrl("/"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: buildAbsoluteUrl(siteConfig, "/en"),
+      url: buildAbsoluteUrl("/en"),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     ...tools.flatMap((tool) => [
       {
-        url: buildAbsoluteUrl(siteConfig, `/${tool.slug}`),
+        url: buildAbsoluteUrl(`/${tool.slug}`),
         changeFrequency: "weekly" as const,
         priority: 0.8,
       },
       {
-        url: buildAbsoluteUrl(siteConfig, `/en/${tool.slug}`),
+        url: buildAbsoluteUrl(`/en/${tool.slug}`),
         changeFrequency: "weekly" as const,
         priority: 0.8,
       },

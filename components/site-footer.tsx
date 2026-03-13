@@ -1,10 +1,6 @@
-"use client";
-
-import { useSiteConfig } from "@/components/providers/site-config-provider";
+import { siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
-  const siteConfig = useSiteConfig();
-
   return (
     <footer className="border-t border-border/60 bg-background">
       <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-3 text-sm text-muted-foreground sm:px-6 lg:px-8">

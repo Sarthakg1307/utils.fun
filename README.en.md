@@ -14,7 +14,7 @@ Many toolbox sites are not short on pages. The real issue is that the tools peop
 - Chinese is the default experience, while English lives under a dedicated `/en` route
 - Most text, dev, conversion, encoding, finance, and image tools run locally in the browser
 - Code-oriented tools use `Monaco Editor` for JSON, SQL, HTML, CSS, JS, and related workflows
-- Site branding is centralized in `public/site-config.json`, which remains editable after build
+- Site branding is centralized in the root-level `site.config.ts` file
 - Desktop and mobile share the same information architecture and tool catalog
 
 ## Categories
@@ -94,8 +94,8 @@ npm run build
 │  ├─ site.ts
 │  └─ tools.ts
 ├─ public/
-│  ├─ favicon.ico
-│  └─ site-config.json
+│  └─ favicon.ico
+├─ site.config.ts
 └─ package.json
 ```
 
@@ -107,7 +107,7 @@ npm run build
 - `app/pages/tool-page.tsx`: the tool detail layout and work area shell
 - `lib/i18n.ts`: shared site-level dictionary content
 - `lib/locale.ts`: bilingual route helpers and locale preference persistence
-- `public/site-config.json`: the runtime config file for title, description, logo, footer, and repository settings
+- `site.config.ts`: title, description, logo, footer, and repository settings
 
 ## Bilingual Routing
 
@@ -128,7 +128,7 @@ npm run build
 
 ## Site Configuration
 
-Site-level branding and base settings live in `public/site-config.json`, and the app reads it at runtime so you can still change it after build:
+Site-level branding and base settings live in the root-level `site.config.ts` file:
 
 - `title`: site title
 - `titleSeparator`: page title separator
@@ -138,11 +138,7 @@ Site-level branding and base settings live in `public/site-config.json`, and the
 - `footerHtml`: footer HTML
 - `githubUrl`: GitHub repository URL
 
-Post-build workflow:
-
-- The default config file path is `public/site-config.json`
-- Update this file and restart the server to apply the new settings
-- If you prefer another location, set `SITE_CONFIG_PATH` to point to a custom config file
+After changing these settings, run `npm run build` again before starting the production server.
 
 ## Contributing
 
