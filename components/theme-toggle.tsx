@@ -10,6 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import {
+  persistThemePreferenceCookie,
+  THEME_STORAGE_KEY,
+  type ThemePreference,
+} from "@/lib/theme-preferences";
 import { cn } from "@/lib/utils";
 
 export function ThemeToggle({
@@ -63,6 +68,20 @@ export function ThemeToggle({
     return trigger;
   }
 
+  function onSelect(nextTheme: ThemePreference) {
+    setTheme(nextTheme);
+
+    if (typeof document === "undefined") {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    } catch {}
+
+    persistThemePreferenceCookie(nextTheme);
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
@@ -71,7 +90,7 @@ export function ThemeToggle({
           <DropdownMenuItem
             key={item.key}
             className="gap-2"
-            onClick={() => setTheme(item.key)}
+            onClick={() => onSelect(item.key)}
           >
             {item.icon}
             {item.label}

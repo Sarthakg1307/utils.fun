@@ -16,6 +16,10 @@ import {
   THEME_STYLE_STORAGE_KEY,
   type ThemeStyle,
 } from "@/lib/theme-style";
+import {
+  readClientThemePreference,
+  persistThemeStyleCookie,
+} from "@/lib/theme-preferences";
 import { cn } from "@/lib/utils";
 
 type ThemeStyleOptions = {
@@ -43,8 +47,8 @@ export function ThemeStyleToggle({
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      const saved = window.localStorage.getItem(THEME_STYLE_STORAGE_KEY);
-      const nextStyle = saved && isThemeStyle(saved) ? saved : "brutalist";
+      const { style: storedStyle } = readClientThemePreference();
+      const nextStyle = isThemeStyle(storedStyle) ? storedStyle : "brutalist";
 
       applyThemeStyle(nextStyle);
       setStyle(nextStyle);
@@ -83,6 +87,7 @@ export function ThemeStyleToggle({
     setStyle(nextStyle);
     applyThemeStyle(nextStyle);
     window.localStorage.setItem(THEME_STYLE_STORAGE_KEY, nextStyle);
+    persistThemeStyleCookie(nextStyle);
   }
 
   const trigger = (

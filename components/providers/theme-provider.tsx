@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { BrowserChromeSync } from "@/components/providers/browser-chrome-sync";
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
     >
       {children}
+      <BrowserChromeSync />
     </NextThemesProvider>
   );
 }

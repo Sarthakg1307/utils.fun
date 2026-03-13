@@ -54,7 +54,7 @@ export function ToolPage({
       <ToolWorkbench tool={tool} locale={locale} dict={dict} />
       <div className="w-full">
         <Button asChild variant="ghost">
-          <Link href={homePath}>
+          <Link href={homePath} scroll>
             <ArrowLeft className="size-4" />
             {dict.backHome}
           </Link>

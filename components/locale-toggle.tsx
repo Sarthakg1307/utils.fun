@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import {
+  buildPath,
   hasEnglishPath,
   persistLocaleCookie,
   stripEnglishPath,
@@ -75,10 +76,13 @@ export function LocaleToggle({
             className="gap-2"
             onClick={() => {
               const nextLocale = item.key as Locale;
+              const normalizedPathname = stripEnglishPath(pathname);
               const nextPathname =
-                hasEnglishPath(pathname) && nextLocale === "zh"
-                  ? stripEnglishPath(pathname)
-                  : pathname;
+                nextLocale === "en"
+                  ? hasEnglishPath(pathname)
+                    ? pathname
+                    : buildPath("/en", normalizedPathname)
+                  : normalizedPathname;
 
               persistLocaleCookie(nextLocale);
 

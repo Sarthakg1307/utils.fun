@@ -82,7 +82,7 @@ export function ToolSearchDialog({
   function openTool(tool: Tool) {
     setOpen(false);
     setQuery("");
-    router.push(buildToolPath(pathPrefix, tool.slug));
+    router.push(buildToolPath(pathPrefix, tool.slug), { scroll: true });
   }
 
   return (

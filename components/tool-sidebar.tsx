@@ -47,6 +47,7 @@ export function ToolSidebar({
                 <Link
                   key={tool.slug}
                   href={buildToolPath(pathPrefix, tool.slug)}
+                  scroll
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground",
                     tool.slug === activeSlug && "bg-muted/80 font-medium text-foreground",

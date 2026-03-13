@@ -87,6 +87,7 @@ export function ToolExplorer({
                 <Link
                   key={tool.slug}
                   href={buildToolPath(pathPrefix, tool.slug)}
+                  scroll
                   className="group block h-full"
                 >
                   <Card className="h-full rounded-2xl border-border/70 bg-card/75 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-primary/45 group-hover:bg-accent/20">

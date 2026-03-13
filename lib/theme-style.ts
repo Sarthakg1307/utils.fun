@@ -14,7 +14,7 @@ export const THEME_STYLES = [
 
 export type ThemeStyle = (typeof THEME_STYLES)[number];
 
-const THEME_STYLE_CLASS_MAP: Record<ThemeStyle, string | null> = {
+export const THEME_STYLE_CLASS_MAP: Record<ThemeStyle, string | null> = {
   brutalist: null,
   twitter: "theme-twitter",
   darkmatter: "theme-darkmatter",
@@ -34,10 +34,14 @@ export function isThemeStyle(value: string): value is ThemeStyle {
   return THEME_STYLES.includes(value as ThemeStyle);
 }
 
+export function getThemeStyleClass(style: ThemeStyle) {
+  return THEME_STYLE_CLASS_MAP[style];
+}
+
 export function applyThemeStyle(style: ThemeStyle) {
   const root = document.documentElement;
   root.classList.remove(...THEME_STYLE_CLASSES);
-  const className = THEME_STYLE_CLASS_MAP[style];
+  const className = getThemeStyleClass(style);
   if (className) {
     root.classList.add(className);
   }

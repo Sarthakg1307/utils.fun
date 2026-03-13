@@ -5,6 +5,19 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--background);
+}
+
+@media (max-width: 640px) {
+  [data-slot="input"],
+  [data-slot="textarea"],
+  [data-slot="select-trigger"] {
+    font-size: 16px;
+  }
+}
+
 @theme inline {
   --font-sans: 'Montserrat', sans-serif;
   --color-background: var(--background);
@@ -1083,6 +1096,7 @@ html {
 body {
   min-height: 100vh;
   font-family: var(--font-sans), sans-serif;
+  background-color: var(--background);
 }
 
 a {

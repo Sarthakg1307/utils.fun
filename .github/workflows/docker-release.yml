@@ -5,22 +5,29 @@ on:
     tags:
       - "v*"
 
+concurrency:
+  group: docker-release-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
 env:
   REGISTRY: docker.io
   IMAGE_NAME: ${{ vars.DOCKERHUB_REPOSITORY || github.event.repository.name }}
+  DOCKER_PLATFORMS: ${{ vars.DOCKER_PLATFORMS || 'linux/amd64' }}
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up QEMU
+        if: contains(env.DOCKER_PLATFORMS, 'arm64')
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
@@ -37,6 +44,9 @@ jobs:
       # - Secret: DOCKERHUB_TOKEN
       # Optional:
       # - Variable: DOCKERHUB_REPOSITORY (defaults to the GitHub repository name)
+      # - Variable: DOCKER_PLATFORMS
+      #   Default: linux/amd64
+      #   Example multi-arch: linux/amd64,linux/arm64
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
@@ -51,9 +61,12 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ env.DOCKER_PLATFORMS }}
           push: true
+          pull: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          provenance: false
+          sbom: false
+          cache-from: type=gha,scope=release-docker
+          cache-to: type=gha,mode=max,scope=release-docker

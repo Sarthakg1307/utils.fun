@@ -62,7 +62,10 @@ export function SiteHeader({
   const siteConfig = useSiteConfig();
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header
+      className="sticky top-0 z-30 border-b border-border/60 backdrop-blur-xl"
+      style={{ backgroundColor: "var(--browser-chrome-bg, var(--background))" }}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 sm:py-4 lg:px-8">
         <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           {mobileNavigation ? (
