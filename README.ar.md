@@ -17,23 +17,25 @@
 
 مجموعة أدوات إلكترونية نظيفة وقابلة للاستضافة الذاتية، تدعم تعدد اللغات ومسارات SEO لسيناريوهات التطوير والنصوص والوقت والصور والترميز والتوليد اليومي.
 
+![Utils.fun](./docs/index.png)
+
 ## ابدأ بالنشر
 
 | الطريقة | مناسب لـ | الإجراء |
 | --- | --- | --- |
 | Vercel | إطلاق سريع بدون إعدادات | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | خادم سحابي / NAS / استضافة ذاتية | راجع `docker run` أدناه |
+| Docker | خادم سحابي / NAS / استضافة ذاتية | راجع `docker pull` أدناه |
 | Node.js | لديك بيئة Node.js 20 جاهزة | `npm install && npm run build && npm run start` |
 
 ### Docker
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 افتح `http://localhost:3000`.
@@ -44,8 +46,6 @@ docker run -d \
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## أهم المزايا
 

@@ -17,23 +17,25 @@
 
 開発、テキスト、時間、画像、エンコード、日常的な生成作業をカバーする、多言語対応・自己ホスト可能なオンラインツール集です。
 
+![Utils.fun](./docs/index.png)
+
 ## まずはデプロイ
 
 | 方法 | 用途 | 操作 |
 | --- | --- | --- |
 | Vercel | 設定なしで素早く公開 | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | クラウドサーバー / NAS / セルフホスト | 下の `docker run` を参照 |
+| Docker | クラウドサーバー / NAS / セルフホスト | 下の `docker pull` を参照 |
 | Node.js | Node.js 20 環境がある場合 | `npm install && npm run build && npm run start` |
 
 ### Docker デプロイ
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 `http://localhost:3000` を開きます。
@@ -44,8 +46,6 @@ docker run -d \
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## 主な特徴
 

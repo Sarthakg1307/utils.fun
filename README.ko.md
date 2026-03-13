@@ -17,23 +17,25 @@
 
 개발, 텍스트, 시간, 이미지, 인코딩, 일상적인 생성 작업을 위한 다국어 지원 셀프호스팅 온라인 툴박스입니다.
 
+![Utils.fun](./docs/index.png)
+
 ## 먼저 배포하기
 
 | 방법 | 적합한 상황 | 실행 |
 | --- | --- | --- |
 | Vercel | 설정 없이 빠르게 배포 | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | 클라우드 서버 / NAS / 셀프호스팅 | 아래 `docker run` 참고 |
+| Docker | 클라우드 서버 / NAS / 셀프호스팅 | 아래 `docker pull` 참고 |
 | Node.js | Node.js 20 환경이 이미 있는 경우 | `npm install && npm run build && npm run start` |
 
 ### Docker 배포
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 `http://localhost:3000` 에 접속하세요.
@@ -44,8 +46,6 @@ docker run -d \
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## 핵심 특징
 

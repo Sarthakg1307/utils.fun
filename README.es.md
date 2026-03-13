@@ -17,23 +17,25 @@
 
 Una caja de herramientas online, autohospedable y multilingüe, para tareas de desarrollo, texto, tiempo, imagen, codificación y generación habitual.
 
+![Utils.fun](./docs/index.png)
+
 ## Despliega primero
 
 | Método | Ideal para | Acción |
 | --- | --- | --- |
 | Vercel | Publicación rápida sin configuración | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | Servidor en la nube / NAS / autohospedado | Consulta `docker run` abajo |
+| Docker | Servidor en la nube / NAS / autohospedado | Consulta `docker pull` abajo |
 | Node.js | Entorno existente con Node.js 20 | `npm install && npm run build && npm run start` |
 
 ### Docker
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 Abre `http://localhost:3000`.
@@ -44,8 +46,6 @@ Abre `http://localhost:3000`.
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## Puntos clave
 

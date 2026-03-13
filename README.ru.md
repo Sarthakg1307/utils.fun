@@ -17,23 +17,25 @@
 
 Аккуратный самохостируемый онлайн-набор инструментов с мультиязычностью и SEO-маршрутами для разработки, текста, времени, изображений, кодирования и повседневной генерации.
 
+![Utils.fun](./docs/index.png)
+
 ## Разверните сразу
 
 | Способ | Подходит для | Действие |
 | --- | --- | --- |
 | Vercel | Быстрый запуск без настройки | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | Облачный сервер / NAS / self-hosted | См. `docker run` ниже |
+| Docker | Облачный сервер / NAS / self-hosted | См. `docker pull` ниже |
 | Node.js | Уже есть Node.js 20 | `npm install && npm run build && npm run start` |
 
 ### Docker
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 Откройте `http://localhost:3000`.
@@ -44,8 +46,6 @@ docker run -d \
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## Ключевые возможности
 

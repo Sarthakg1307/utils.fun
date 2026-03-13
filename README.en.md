@@ -17,23 +17,25 @@
 
 A clean, self-hostable online toolbox with multilingual support and SEO routes for dev, text, time, image, encoding, and everyday generation tasks.
 
+![Utils.fun](./docs/index.png)
+
 ## Deploy First
 
 | Method | Best for | Action |
 | --- | --- | --- |
 | Vercel | Fast zero-config launch | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | Cloud server / NAS / self-hosting | See `docker run` below |
+| Docker | Cloud server / NAS / self-hosting | See `docker pull` below |
 | Node.js | Existing Node.js 20 runtime | `npm install && npm run build && npm run start` |
 
 ### Docker
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 Open `http://localhost:3000`.
@@ -44,8 +46,6 @@ Open `http://localhost:3000`.
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## Highlights
 

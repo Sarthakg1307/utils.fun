@@ -17,23 +17,25 @@
 
 一個簡潔、可自部署、支援多語言與 SEO 路由的線上工具站，涵蓋開發、文字、時間、圖片、編碼與常用生成場景。
 
+![Utils.fun](./docs/index.png)
+
 ## 立即部署
 
 | 方式 | 適合場景 | 操作 |
 | --- | --- | --- |
 | Vercel | 零設定快速上線 | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | 雲伺服器 / NAS / 自託管 | 見下方 `docker run` |
+| Docker | 雲伺服器 / NAS / 自託管 | 見下方 `docker pull` |
 | Node.js | 已有 Node.js 20 環境 | `npm install && npm run build && npm run start` |
 
 ### Docker 部署
 
 ```bash
-docker build -t utils-fun .
+docker pull licoy/utils.fun:latest
 docker run -d \
   --name utils-fun \
   --restart unless-stopped \
   -p 3000:3000 \
-  utils-fun
+  licoy/utils.fun:latest
 ```
 
 訪問 `http://localhost:3000`。
@@ -44,8 +46,6 @@ docker run -d \
 npm install
 npm run dev
 ```
-
-![Utils.fun](./docs/index.png)
 
 ## 專案亮點
 
