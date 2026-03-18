@@ -1,16 +1,23 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { PDFDocument } from "pdf-lib";
+import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 
 import {
+  addPdfPageNumbers,
+  addPdfTextWatermark,
   imagesToPdf,
   mergePdfs,
   parseSplitRanges,
+  removePdfPages,
+  reorderPdfPages,
   rotatePdf,
   splitPdf,
 } from "@/components/tool-workbench/features/pdf/pdf-core";
+
+vi.spyOn(console, "warn").mockImplementation(() => undefined);
 
 async function createPdfFile(name: string, pageCount: number) {
   const doc = await PDFDocument.create();
@@ -28,6 +35,20 @@ async function getPageCount(blob: Blob) {
   const doc = await PDFDocument.load(bytes);
 
   return doc.getPageCount();
+}
+
+async function getPageText(blob: Blob, pageNumber: number) {
+  const loadingTask = getDocument({
+    data: new Uint8Array(await blob.arrayBuffer()),
+    disableWorker: true,
+  });
+  const document = await loadingTask.promise;
+  const page = await document.getPage(pageNumber);
+  const content = await page.getTextContent();
+
+  return content.items
+    .map((item) => ("str" in item ? item.str : ""))
+    .join(" ");
 }
 
 async function createImageFile(name: string) {
@@ -91,5 +112,47 @@ describe("pdf core", () => {
 
     expect(output.type).toBe("application/pdf");
     await expect(getPageCount(output)).resolves.toBe(2);
+  });
+
+  it("removes selected pages from a PDF", async () => {
+    const source = await createPdfFile("source.pdf", 4);
+    const output = await removePdfPages(source, [2, 4]);
+
+    await expect(getPageCount(output)).resolves.toBe(2);
+    await expect(getPageText(output, 1)).resolves.toContain("Page 1");
+    await expect(getPageText(output, 2)).resolves.toContain("Page 3");
+  });
+
+  it("reorders PDF pages into the requested order", async () => {
+    const source = await createPdfFile("source.pdf", 3);
+    const output = await reorderPdfPages(source, [3, 1, 2]);
+
+    await expect(getPageCount(output)).resolves.toBe(3);
+    await expect(getPageText(output, 1)).resolves.toContain("Page 3");
+    await expect(getPageText(output, 2)).resolves.toContain("Page 1");
+    await expect(getPageText(output, 3)).resolves.toContain("Page 2");
+  });
+
+  it("adds a text watermark to every PDF page", async () => {
+    const source = await createPdfFile("source.pdf", 2);
+    const output = await addPdfTextWatermark(source, {
+      text: "CONFIDENTIAL",
+    });
+
+    await expect(getPageCount(output)).resolves.toBe(2);
+    await expect(getPageText(output, 1)).resolves.toContain("CONFIDENTIAL");
+    await expect(getPageText(output, 2)).resolves.toContain("CONFIDENTIAL");
+  });
+
+  it("adds page numbers with a configurable prefix and start value", async () => {
+    const source = await createPdfFile("source.pdf", 2);
+    const output = await addPdfPageNumbers(source, {
+      prefix: "Pg ",
+      start: 3,
+      position: "bottom-right",
+    });
+
+    await expect(getPageText(output, 1)).resolves.toContain("Pg 3");
+    await expect(getPageText(output, 2)).resolves.toContain("Pg 4");
   });
 });

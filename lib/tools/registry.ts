@@ -25,6 +25,10 @@ export type ToolSlug =
   | "rotate-pdf"
   | "pdf-to-images"
   | "images-to-pdf"
+  | "remove-pdf-pages"
+  | "reorder-pdf-pages"
+  | "pdf-watermark"
+  | "pdf-page-numbers"
   | "md5"
   | "file-md5"
   | "hmac"
@@ -162,6 +166,22 @@ export const toolRegistry = [
   },
   {
     "slug": "images-to-pdf",
+    "category": "pdf"
+  },
+  {
+    "slug": "remove-pdf-pages",
+    "category": "pdf"
+  },
+  {
+    "slug": "reorder-pdf-pages",
+    "category": "pdf"
+  },
+  {
+    "slug": "pdf-watermark",
+    "category": "pdf"
+  },
+  {
+    "slug": "pdf-page-numbers",
     "category": "pdf"
   },
   {

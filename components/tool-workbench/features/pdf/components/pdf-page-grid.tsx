@@ -6,10 +6,11 @@ import type { PdfPreviewDocument } from "../pdf-preview";
 type PdfPageGridProps = {
   document: PdfPreviewDocument;
   pageCount: number;
-  mode?: "view" | "rotate";
+  mode?: "view" | "rotate" | "select";
   highlightedPages?: Set<number>;
   pageRotations?: Record<number, number>;
   onRotate?: (pageIndex: number, delta: number) => void;
+  onSelect?: (pageNumber: number) => void;
 };
 
 export function PdfPageGrid({
@@ -19,6 +20,7 @@ export function PdfPageGrid({
   highlightedPages,
   pageRotations,
   onRotate,
+  onSelect,
 }: PdfPageGridProps) {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,minmax(132px,1fr))] gap-4">
@@ -36,6 +38,7 @@ export function PdfPageGrid({
             mode={mode}
             onRotateLeft={mode === "rotate" ? () => onRotate?.(pageIndex, -90) : undefined}
             onRotateRight={mode === "rotate" ? () => onRotate?.(pageIndex, 90) : undefined}
+            onSelect={mode === "select" ? () => onSelect?.(pageNumber) : undefined}
           />
         );
       })}

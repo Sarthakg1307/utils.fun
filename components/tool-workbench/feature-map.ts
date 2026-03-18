@@ -70,6 +70,10 @@ const featureDomainBySlug = new Map<string, FeatureDomain>([
   ["rotate-pdf", "pdf"],
   ["pdf-to-images", "pdf"],
   ["images-to-pdf", "pdf"],
+  ["remove-pdf-pages", "pdf"],
+  ["reorder-pdf-pages", "pdf"],
+  ["pdf-watermark", "pdf"],
+  ["pdf-page-numbers", "pdf"],
 ]);
 
 export function getFeatureDomain(slug: string): FeatureDomain | null {

@@ -6,6 +6,10 @@ import { SplitPdfTool } from "./tools/split-pdf-tool";
 import { RotatePdfTool } from "./tools/rotate-pdf-tool";
 import { PdfToImagesTool } from "./tools/pdf-to-images-tool";
 import { ImagesToPdfTool } from "./tools/images-to-pdf-tool";
+import { RemovePdfPagesTool } from "./tools/remove-pdf-pages-tool";
+import { ReorderPdfPagesTool } from "./tools/reorder-pdf-pages-tool";
+import { PdfWatermarkTool } from "./tools/pdf-watermark-tool";
+import { PdfPageNumbersTool } from "./tools/pdf-page-numbers-tool";
 
 export default function PdfWorkbench(props: ToolWorkbenchProps) {
   switch (props.tool.slug) {
@@ -19,6 +23,14 @@ export default function PdfWorkbench(props: ToolWorkbenchProps) {
       return <PdfToImagesTool locale={props.locale} />;
     case "images-to-pdf":
       return <ImagesToPdfTool locale={props.locale} />;
+    case "remove-pdf-pages":
+      return <RemovePdfPagesTool locale={props.locale} />;
+    case "reorder-pdf-pages":
+      return <ReorderPdfPagesTool locale={props.locale} />;
+    case "pdf-watermark":
+      return <PdfWatermarkTool locale={props.locale} />;
+    case "pdf-page-numbers":
+      return <PdfPageNumbersTool locale={props.locale} />;
     default:
       return null;
   }

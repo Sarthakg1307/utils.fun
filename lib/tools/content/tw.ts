@@ -175,6 +175,42 @@ export const twToolContent: ToolContentMap = {
       "單個 PDF 下載"
     ]
   },
+  "remove-pdf-pages": {
+    "title": "PDF 刪頁",
+    "description": "在頁面預覽裡選中要刪除的頁碼，本地導出刪減後的 PDF。",
+    "highlights": [
+      "可視化選頁",
+      "本地處理",
+      "單文件導出"
+    ]
+  },
+  "reorder-pdf-pages": {
+    "title": "PDF 頁面重排",
+    "description": "按需要調整 PDF 頁面順序，再導出新的文檔。",
+    "highlights": [
+      "頁面順序調整",
+      "預覽後導出",
+      "本地完成"
+    ]
+  },
+  "pdf-watermark": {
+    "title": "PDF 水印",
+    "description": "給 PDF 每一頁疊加文字水印，支援字號、透明度和角度設置。",
+    "highlights": [
+      "文字水印",
+      "字號/透明度",
+      "離線導出"
+    ]
+  },
+  "pdf-page-numbers": {
+    "title": "PDF 頁碼",
+    "description": "給 PDF 批量添加頁碼，支援前綴、起始頁碼和顯示位置。",
+    "highlights": [
+      "自定義前綴",
+      "起始頁碼",
+      "位置控制"
+    ]
+  },
   "md5": {
     "title": "文本 MD5 哈希",
     "description": "計算文本 MD5 值，並展示大小寫兩種結果。",

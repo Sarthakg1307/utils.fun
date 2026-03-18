@@ -175,6 +175,42 @@ export const cnToolContent: ToolContentMap = {
       "单个 PDF 下载"
     ]
   },
+  "remove-pdf-pages": {
+    "title": "PDF 删页",
+    "description": "在页面预览里选中要删除的页码，本地导出删减后的 PDF。",
+    "highlights": [
+      "可视化选页",
+      "本地处理",
+      "单文件导出"
+    ]
+  },
+  "reorder-pdf-pages": {
+    "title": "PDF 页面重排",
+    "description": "按需要调整 PDF 页面顺序，再导出新的文档。",
+    "highlights": [
+      "页面顺序调整",
+      "预览后导出",
+      "本地完成"
+    ]
+  },
+  "pdf-watermark": {
+    "title": "PDF 水印",
+    "description": "给 PDF 每一页叠加文字水印，支持字号、透明度和角度设置。",
+    "highlights": [
+      "文字水印",
+      "字号/透明度",
+      "离线导出"
+    ]
+  },
+  "pdf-page-numbers": {
+    "title": "PDF 页码",
+    "description": "给 PDF 批量添加页码，支持前缀、起始页码和显示位置。",
+    "highlights": [
+      "自定义前缀",
+      "起始页码",
+      "位置控制"
+    ]
+  },
   "md5": {
     "title": "文本 MD5 哈希",
     "description": "计算文本 MD5 值，并展示大小写两种结果。",

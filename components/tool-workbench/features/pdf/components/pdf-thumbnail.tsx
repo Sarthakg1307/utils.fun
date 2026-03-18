@@ -10,9 +10,10 @@ type PdfThumbnailProps = {
   pageNumber: number;
   rotation?: number;
   highlight?: boolean;
-  mode?: "view" | "rotate";
+  mode?: "view" | "rotate" | "select";
   onRotateLeft?: () => void;
   onRotateRight?: () => void;
+  onSelect?: () => void;
 };
 
 export function PdfThumbnail({
@@ -23,9 +24,10 @@ export function PdfThumbnail({
   mode = "view",
   onRotateLeft,
   onRotateRight,
+  onSelect,
 }: PdfThumbnailProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const rootRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
   const [loadedSignature, setLoadedSignature] = useState<string | null>(null);
   const renderSignature = `${getPreviewDocumentId(document)}:${pageNumber}:${rotation}`;
@@ -73,8 +75,8 @@ export function PdfThumbnail({
     };
   }, [document, pageNumber, renderSignature, rotation, visible]);
 
-  return (
-    <div ref={rootRef} className="space-y-2">
+  const content = (
+    <>
       <div
         className={[
           "relative overflow-hidden rounded-xl border bg-card",
@@ -116,6 +118,39 @@ export function PdfThumbnail({
           <span>{pageNumber}</span>
         )}
       </div>
+    </>
+  );
+
+  if (mode === "select") {
+    return (
+      <button
+        ref={(node) => {
+          rootRef.current = node;
+        }}
+        type="button"
+        onClick={onSelect}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            onSelect?.();
+          }
+        }}
+        className="w-full space-y-2 text-left"
+        aria-pressed={highlight}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <div
+      ref={(node) => {
+        rootRef.current = node;
+      }}
+      className="space-y-2"
+    >
+      {content}
     </div>
   );
 }

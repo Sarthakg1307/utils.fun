@@ -175,6 +175,42 @@ export const enToolContent: ToolContentMap = {
       "Single PDF download"
     ]
   },
+  "remove-pdf-pages": {
+    "title": "Remove PDF Pages",
+    "description": "Drop selected pages from a PDF locally and export a lighter document.",
+    "highlights": [
+      "Visual page picker",
+      "Local processing",
+      "Single export"
+    ]
+  },
+  "reorder-pdf-pages": {
+    "title": "Reorder PDF Pages",
+    "description": "Change PDF page order before export using a local page-by-page workbench.",
+    "highlights": [
+      "Move page order",
+      "Preview first",
+      "Local export"
+    ]
+  },
+  "pdf-watermark": {
+    "title": "PDF Watermark",
+    "description": "Apply a repeated text watermark to every page without uploading the file.",
+    "highlights": [
+      "Text watermark",
+      "Size and opacity",
+      "Offline export"
+    ]
+  },
+  "pdf-page-numbers": {
+    "title": "PDF Page Numbers",
+    "description": "Add page numbers with configurable prefix, start value, and position.",
+    "highlights": [
+      "Custom prefix",
+      "Start index",
+      "Position control"
+    ]
+  },
   "md5": {
     "title": "Text MD5",
     "description": "Calculate text MD5 hashes and show lower/upper case variants.",

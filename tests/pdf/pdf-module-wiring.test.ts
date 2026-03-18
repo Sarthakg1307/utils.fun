@@ -10,6 +10,10 @@ const pdfToolSlugs = [
   "rotate-pdf",
   "pdf-to-images",
   "images-to-pdf",
+  "remove-pdf-pages",
+  "reorder-pdf-pages",
+  "pdf-watermark",
+  "pdf-page-numbers",
 ] as const;
 
 describe("pdf module wiring", () => {
