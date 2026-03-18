@@ -250,17 +250,24 @@ export function PdfResultPanel({
               </div>
             </div>
             <div className="rounded-2xl border border-border/70 bg-muted/20 p-4">
-              {loading ? (
-                <div className="flex min-h-[28rem] items-center justify-center text-muted-foreground">
-                  <LoaderCircle className="size-5 animate-spin" />
-                </div>
-              ) : error ? (
+              {error ? (
                 <div className="flex min-h-[20rem] items-center justify-center text-center text-sm text-muted-foreground">
                   {error}
                 </div>
               ) : (
-                <div className="overflow-auto">
-                  <canvas ref={canvasRef} className="mx-auto block h-auto max-w-full rounded-lg bg-white shadow-sm" />
+                <div className="relative overflow-auto">
+                  {loading ? (
+                    <div className="absolute inset-0 z-10 flex min-h-[28rem] items-center justify-center text-muted-foreground">
+                      <LoaderCircle className="size-5 animate-spin" />
+                    </div>
+                  ) : null}
+                  <canvas
+                    ref={canvasRef}
+                    className={[
+                      "mx-auto block h-auto max-w-full rounded-lg bg-white shadow-sm",
+                      loading ? "invisible" : "",
+                    ].join(" ")}
+                  />
                 </div>
               )}
             </div>
