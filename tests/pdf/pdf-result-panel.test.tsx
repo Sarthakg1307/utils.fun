@@ -94,4 +94,46 @@ describe("pdf result panel", () => {
       root.unmount();
     });
   });
+
+  it("keeps the preview dialog within the viewport and exposes an internal scroll region", async () => {
+    const container = document.createElement("div");
+    document.body.append(container);
+    const root = createRoot(container);
+
+    await act(async () => {
+      root.render(
+        <PdfResultPanel
+          locale="cn"
+          title="处理完成"
+          results={[
+            {
+              blob: new Blob(["pdf"], { type: "application/pdf" }),
+              filename: "result.pdf",
+            },
+          ]}
+        />,
+      );
+    });
+
+    const previewButton = Array.from(container.querySelectorAll("button")).find((element) =>
+      element.textContent?.includes("实时预览"),
+    );
+
+    await act(async () => {
+      previewButton?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    const dialog = document.querySelector("[role='dialog']");
+    const scrollRegion = document.querySelector("[data-pdf-preview-body='true']");
+
+    expect(dialog?.className).toContain("max-h-[calc(100dvh-2rem)]");
+    expect(scrollRegion?.className).toContain("overflow-y-auto");
+    expect(scrollRegion?.className).toContain("min-h-0");
+
+    await act(async () => {
+      root.unmount();
+    });
+  });
 });

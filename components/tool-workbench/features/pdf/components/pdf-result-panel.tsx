@@ -196,7 +196,7 @@ export function PdfResultPanel({
       </Card>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="w-[min(100%-2rem,72rem)] gap-0 overflow-hidden p-0">
+        <DialogContent className="flex max-h-[calc(100dvh-2rem)] w-[min(100%-2rem,72rem)] flex-col gap-0 overflow-hidden p-0">
           <DialogHeader className="border-b px-6 py-4">
             <DialogTitle>{activeResult?.label ?? activeResult?.filename ?? title}</DialogTitle>
             <DialogDescription>
@@ -207,7 +207,10 @@ export function PdfResultPanel({
               )}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 p-6">
+          <div
+            data-pdf-preview-body="true"
+            className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-6"
+          >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <span>{activeResult?.filename}</span>
