@@ -9,6 +9,10 @@ export const enCategoryContent: CategoryContentMap = {
     "title": "Image",
     "description": "Image workflows that stay local in the browser whenever possible."
   },
+  "pdf": {
+    "title": "PDF",
+    "description": "Offline PDF workflows for merging, splitting, rotating, and converting files locally."
+  },
   "encrypt": {
     "title": "Encrypt",
     "description": "Hashing, encoding, and common symmetric encryption helpers."
@@ -124,6 +128,51 @@ export const enToolContent: ToolContentMap = {
       "Switch standards",
       "Color and size",
       "SVG download"
+    ]
+  },
+  "merge-pdf": {
+    "title": "Merge PDF",
+    "description": "Combine multiple PDF files locally and reorder them before export.",
+    "highlights": [
+      "Drag to reorder",
+      "Local merge",
+      "Single download"
+    ]
+  },
+  "split-pdf": {
+    "title": "Split PDF",
+    "description": "Split one PDF into separate files by page ranges with page preview.",
+    "highlights": [
+      "Range input",
+      "Page preview",
+      "ZIP download"
+    ]
+  },
+  "rotate-pdf": {
+    "title": "Rotate PDF",
+    "description": "Rotate individual PDF pages and export a corrected document locally.",
+    "highlights": [
+      "Per-page rotation",
+      "Visual preview",
+      "Local export"
+    ]
+  },
+  "pdf-to-images": {
+    "title": "PDF to Images",
+    "description": "Render each PDF page into a PNG image in the browser and download the results.",
+    "highlights": [
+      "Page thumbnails",
+      "PNG export",
+      "ZIP download"
+    ]
+  },
+  "images-to-pdf": {
+    "title": "Images to PDF",
+    "description": "Combine PNG or JPG images into one PDF and arrange page order before export.",
+    "highlights": [
+      "Drag to reorder",
+      "PNG and JPG",
+      "Single PDF download"
     ]
   },
   "md5": {

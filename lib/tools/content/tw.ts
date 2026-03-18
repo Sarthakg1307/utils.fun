@@ -9,6 +9,10 @@ export const twCategoryContent: CategoryContentMap = {
     "title": "圖片處理",
     "description": "圍繞本地圖片處理展開，儘量保持瀏覽器端完成，不上傳文件。"
   },
+  "pdf": {
+    "title": "PDF 工具",
+    "description": "圍繞瀏覽器本地處理設計的 PDF 工作流，適合合併、拆分、旋轉和圖片互轉。"
+  },
   "encrypt": {
     "title": "加密編碼",
     "description": "涵蓋哈希、編碼和常見對稱加解密場景。"
@@ -124,6 +128,51 @@ export const twToolContent: ToolContentMap = {
       "編碼標準切換",
       "顏色與尺寸",
       "SVG 下載"
+    ]
+  },
+  "merge-pdf": {
+    "title": "PDF 合併",
+    "description": "把多個 PDF 在本地重新排序後合併導出，不經過服務器。",
+    "highlights": [
+      "拖拽調整順序",
+      "本地合併",
+      "單文件下載"
+    ]
+  },
+  "split-pdf": {
+    "title": "PDF 拆分",
+    "description": "按頁碼範圍拆分單個 PDF，並結合頁面預覽導出多個文件。",
+    "highlights": [
+      "範圍輸入",
+      "頁面預覽",
+      "ZIP 下載"
+    ]
+  },
+  "rotate-pdf": {
+    "title": "PDF 旋轉",
+    "description": "逐頁設置旋轉角度後導出新的 PDF，適合掃描件校正。",
+    "highlights": [
+      "逐頁旋轉",
+      "可視化預覽",
+      "本地導出"
+    ]
+  },
+  "pdf-to-images": {
+    "title": "PDF 轉圖片",
+    "description": "把 PDF 的每一頁渲染為 PNG 圖片，並在瀏覽器裡批量下載。",
+    "highlights": [
+      "頁面縮略圖",
+      "PNG 導出",
+      "ZIP 下載"
+    ]
+  },
+  "images-to-pdf": {
+    "title": "圖片轉 PDF",
+    "description": "把 PNG 或 JPG 圖片按順序合成為一個 PDF 文件並導出。",
+    "highlights": [
+      "拖拽調整順序",
+      "支援 PNG/JPG",
+      "單個 PDF 下載"
     ]
   },
   "md5": {

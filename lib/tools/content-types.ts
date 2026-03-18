@@ -11,5 +11,5 @@ export type ToolContent = {
   highlights: string[];
 };
 
-export type CategoryContentMap = Record<CategorySlug, CategoryContent>;
-export type ToolContentMap = Record<ToolSlug, ToolContent>;
+export type CategoryContentMap = Partial<Record<CategorySlug, CategoryContent>>;
+export type ToolContentMap = Partial<Record<ToolSlug, ToolContent>>;

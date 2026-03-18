@@ -1,6 +1,7 @@
 export type CategorySlug =
   | "generate"
   | "image"
+  | "pdf"
   | "encrypt"
   | "time"
   | "convert"
@@ -19,6 +20,11 @@ export type ToolSlug =
   | "image-compress"
   | "qrcode-decode"
   | "barcode"
+  | "merge-pdf"
+  | "split-pdf"
+  | "rotate-pdf"
+  | "pdf-to-images"
+  | "images-to-pdf"
   | "md5"
   | "file-md5"
   | "hmac"
@@ -71,6 +77,9 @@ export const categoryRegistry = [
   },
   {
     "slug": "image"
+  },
+  {
+    "slug": "pdf"
   },
   {
     "slug": "encrypt"
@@ -134,6 +143,26 @@ export const toolRegistry = [
   {
     "slug": "barcode",
     "category": "image"
+  },
+  {
+    "slug": "merge-pdf",
+    "category": "pdf"
+  },
+  {
+    "slug": "split-pdf",
+    "category": "pdf"
+  },
+  {
+    "slug": "rotate-pdf",
+    "category": "pdf"
+  },
+  {
+    "slug": "pdf-to-images",
+    "category": "pdf"
+  },
+  {
+    "slug": "images-to-pdf",
+    "category": "pdf"
   },
   {
     "slug": "md5",

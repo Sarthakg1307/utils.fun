@@ -9,6 +9,10 @@ export const cnCategoryContent: CategoryContentMap = {
     "title": "图片处理",
     "description": "围绕本地图片处理展开，尽量保持浏览器端完成，不上传文件。"
   },
+  "pdf": {
+    "title": "PDF 工具",
+    "description": "围绕浏览器本地处理设计的 PDF 工作流，适合合并、拆分、旋转和图片互转。"
+  },
   "encrypt": {
     "title": "加密编码",
     "description": "涵盖哈希、编码和常见对称加解密场景。"
@@ -124,6 +128,51 @@ export const cnToolContent: ToolContentMap = {
       "编码标准切换",
       "颜色与尺寸",
       "SVG 下载"
+    ]
+  },
+  "merge-pdf": {
+    "title": "PDF 合并",
+    "description": "把多个 PDF 在本地重新排序后合并导出，不经过服务器。",
+    "highlights": [
+      "拖拽调整顺序",
+      "本地合并",
+      "单文件下载"
+    ]
+  },
+  "split-pdf": {
+    "title": "PDF 拆分",
+    "description": "按页码范围拆分单个 PDF，并结合页面预览导出多个文件。",
+    "highlights": [
+      "范围输入",
+      "页面预览",
+      "ZIP 下载"
+    ]
+  },
+  "rotate-pdf": {
+    "title": "PDF 旋转",
+    "description": "逐页设置旋转角度后导出新的 PDF，适合扫描件校正。",
+    "highlights": [
+      "逐页旋转",
+      "可视化预览",
+      "本地导出"
+    ]
+  },
+  "pdf-to-images": {
+    "title": "PDF 转图片",
+    "description": "把 PDF 的每一页渲染为 PNG 图片，并在浏览器里批量下载。",
+    "highlights": [
+      "页面缩略图",
+      "PNG 导出",
+      "ZIP 下载"
+    ]
+  },
+  "images-to-pdf": {
+    "title": "图片转 PDF",
+    "description": "把 PNG 或 JPG 图片按顺序合成为一个 PDF 文件并导出。",
+    "highlights": [
+      "拖拽调整顺序",
+      "支持 PNG/JPG",
+      "单个 PDF 下载"
     ]
   },
   "md5": {

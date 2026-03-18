@@ -57,24 +57,76 @@ const toolContentByLocale: Record<Locale, ToolContentMap> = {
   ar: arToolContent,
 };
 
+const localeFallbacks: Record<Locale, Locale[]> = {
+  cn: ["cn", "en"],
+  tw: ["tw", "cn", "en"],
+  en: ["en"],
+  es: ["es", "en"],
+  ja: ["ja", "en"],
+  ko: ["ko", "en"],
+  ru: ["ru", "en"],
+  de: ["de", "en"],
+  ar: ["ar", "en"],
+};
+
 function localizedValue<T>(pick: (locale: Locale) => T): Record<Locale, T> {
   return Object.fromEntries(
     locales.map((locale) => [locale, pick(locale)]),
   ) as Record<Locale, T>;
 }
 
+function resolveLocalizedContent<K extends string, V>(
+  contentByLocale: Record<Locale, Partial<Record<K, V>>>,
+  locale: Locale,
+  key: K,
+  kind: "category" | "tool",
+) {
+  for (const candidate of localeFallbacks[locale]) {
+    const value = contentByLocale[candidate][key];
+
+    if (value) {
+      return value;
+    }
+  }
+
+  throw new Error(`Missing ${kind} content for "${String(key)}"`);
+}
+
 export const categories: Category[] = categoryRegistry.map((category) => ({
   slug: category.slug,
-  title: localizedValue((locale) => categoryContentByLocale[locale][category.slug].title),
-  description: localizedValue((locale) => categoryContentByLocale[locale][category.slug].description),
+  title: localizedValue(
+    (locale) =>
+      resolveLocalizedContent(
+        categoryContentByLocale,
+        locale,
+        category.slug,
+        "category",
+      ).title,
+  ),
+  description: localizedValue(
+    (locale) =>
+      resolveLocalizedContent(
+        categoryContentByLocale,
+        locale,
+        category.slug,
+        "category",
+      ).description,
+  ),
 }));
 
 export const tools: Tool[] = toolRegistry.map((tool) => ({
   slug: tool.slug,
   category: tool.category,
-  title: localizedValue((locale) => toolContentByLocale[locale][tool.slug].title),
-  description: localizedValue((locale) => toolContentByLocale[locale][tool.slug].description),
-  highlights: localizedValue((locale) => toolContentByLocale[locale][tool.slug].highlights),
+  title: localizedValue(
+    (locale) => resolveLocalizedContent(toolContentByLocale, locale, tool.slug, "tool").title,
+  ),
+  description: localizedValue(
+    (locale) =>
+      resolveLocalizedContent(toolContentByLocale, locale, tool.slug, "tool").description,
+  ),
+  highlights: localizedValue(
+    (locale) => resolveLocalizedContent(toolContentByLocale, locale, tool.slug, "tool").highlights,
+  ),
 }));
 
 export const toolMap = new Map<ToolSlug, Tool>(tools.map((tool) => [tool.slug, tool]));
