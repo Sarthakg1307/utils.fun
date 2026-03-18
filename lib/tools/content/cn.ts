@@ -211,6 +211,24 @@ export const cnToolContent: ToolContentMap = {
       "位置控制"
     ]
   },
+  "pdf-to-text": {
+    "title": "PDF 转文本",
+    "description": "先预览页面，再把 PDF 中的可读文字提取出来，适合归档和整理。",
+    "highlights": [
+      "页面预览",
+      "可读文本输出",
+      "本地提取"
+    ]
+  },
+  "pdf-metadata-clean": {
+    "title": "PDF 元数据清理",
+    "description": "清理常见 PDF 元数据字段，并在导出前先预览清理后的结果。",
+    "highlights": [
+      "清理元数据",
+      "预览优先",
+      "本地导出"
+    ]
+  },
   "md5": {
     "title": "文本 MD5 哈希",
     "description": "计算文本 MD5 值，并展示大小写两种结果。",

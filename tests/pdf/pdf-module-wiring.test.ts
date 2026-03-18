@@ -14,6 +14,8 @@ const pdfToolSlugs = [
   "reorder-pdf-pages",
   "pdf-watermark",
   "pdf-page-numbers",
+  "pdf-to-text",
+  "pdf-metadata-clean",
 ] as const;
 
 describe("pdf module wiring", () => {

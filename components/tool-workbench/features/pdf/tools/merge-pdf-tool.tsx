@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, Download, LoaderCircle, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, LoaderCircle, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,8 @@ import type { Locale } from "@/lib/tools";
 import { mergePdfs } from "../pdf-core";
 import { getPdfPageCount } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
-import { downloadBlob, formatBytes, moveItem, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { formatBytes, moveItem, t } from "../tool-utils";
 
 type MergePdfToolProps = {
   locale: Locale;
@@ -169,13 +170,15 @@ export function MergePdfTool({ locale }: MergePdfToolProps) {
                 {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
                 {t(locale, "合并 PDF", "Merge PDF")}
               </Button>
-              {result ? (
-                <Button type="button" variant="outline" onClick={() => downloadBlob(result, "merged.pdf")}>
-                  <Download className="size-4" />
-                  {t(locale, "下载结果", "Download result")}
-                </Button>
-              ) : null}
             </div>
+            {result ? (
+              <PdfResultPanel
+                locale={locale}
+                title={t(locale, "合并结果已生成", "Merged PDF is ready")}
+                description={t(locale, "你可以先预览合并后的文档，再决定打开新标签页还是下载。", "Preview the merged document first, then choose whether to open it in a new tab or download it.")}
+                results={[{ blob: result, filename: "merged.pdf" }]}
+              />
+            ) : null}
           </CardContent>
         </Card>
       ) : null}

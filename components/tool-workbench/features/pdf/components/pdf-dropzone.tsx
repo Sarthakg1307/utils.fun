@@ -59,6 +59,7 @@ export function PdfDropzone({
         ref={inputRef}
         className="hidden"
         type="file"
+        name="pdf-upload"
         accept={accept}
         multiple={multiple}
         onChange={(event) => emitFiles(Array.from(event.target.files ?? []))}

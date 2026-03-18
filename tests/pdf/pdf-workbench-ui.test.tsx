@@ -10,6 +10,8 @@ const renderCases = [
   ["reorder-pdf-pages", "调整页面顺序"],
   ["pdf-watermark", "水印文字"],
   ["pdf-page-numbers", "页码前缀"],
+  ["pdf-to-text", "提取结果"],
+  ["pdf-metadata-clean", "清理常见文档元数据"],
 ] as const;
 
 describe("pdf workbench ui", () => {

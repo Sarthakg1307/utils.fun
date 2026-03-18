@@ -29,6 +29,8 @@ export type ToolSlug =
   | "reorder-pdf-pages"
   | "pdf-watermark"
   | "pdf-page-numbers"
+  | "pdf-to-text"
+  | "pdf-metadata-clean"
   | "md5"
   | "file-md5"
   | "hmac"
@@ -182,6 +184,14 @@ export const toolRegistry = [
   },
   {
     "slug": "pdf-page-numbers",
+    "category": "pdf"
+  },
+  {
+    "slug": "pdf-to-text",
+    "category": "pdf"
+  },
+  {
+    "slug": "pdf-metadata-clean",
     "category": "pdf"
   },
   {

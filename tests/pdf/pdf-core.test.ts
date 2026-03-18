@@ -8,6 +8,8 @@ import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 import {
   addPdfPageNumbers,
   addPdfTextWatermark,
+  cleanPdfMetadata,
+  extractPdfText,
   imagesToPdf,
   mergePdfs,
   parseSplitRanges,
@@ -154,5 +156,27 @@ describe("pdf core", () => {
 
     await expect(getPageText(output, 1)).resolves.toContain("Pg 3");
     await expect(getPageText(output, 2)).resolves.toContain("Pg 4");
+  });
+
+  it("extracts readable text from all PDF pages", async () => {
+    const source = await createPdfFile("source.pdf", 2);
+
+    await expect(extractPdfText(source)).resolves.toContain("Page 1");
+    await expect(extractPdfText(source)).resolves.toContain("Page 2");
+  });
+
+  it("cleans common metadata fields from a PDF", async () => {
+    const doc = await PDFDocument.create();
+    doc.addPage([300, 400]);
+    doc.setTitle("Secret Plan");
+    doc.setAuthor("Codex");
+    doc.setSubject("Top Secret");
+    const source = new File([await doc.save()], "metadata.pdf", { type: "application/pdf" });
+    const output = await cleanPdfMetadata(source);
+    const cleaned = await PDFDocument.load(await output.arrayBuffer());
+
+    expect(cleaned.getTitle()).toBe("");
+    expect(cleaned.getAuthor()).toBe("");
+    expect(cleaned.getSubject()).toBe("");
   });
 });

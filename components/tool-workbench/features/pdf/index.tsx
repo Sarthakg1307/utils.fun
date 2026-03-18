@@ -10,6 +10,8 @@ import { RemovePdfPagesTool } from "./tools/remove-pdf-pages-tool";
 import { ReorderPdfPagesTool } from "./tools/reorder-pdf-pages-tool";
 import { PdfWatermarkTool } from "./tools/pdf-watermark-tool";
 import { PdfPageNumbersTool } from "./tools/pdf-page-numbers-tool";
+import { PdfToTextTool } from "./tools/pdf-to-text-tool";
+import { PdfMetadataCleanTool } from "./tools/pdf-metadata-clean-tool";
 
 export default function PdfWorkbench(props: ToolWorkbenchProps) {
   switch (props.tool.slug) {
@@ -31,6 +33,10 @@ export default function PdfWorkbench(props: ToolWorkbenchProps) {
       return <PdfWatermarkTool locale={props.locale} />;
     case "pdf-page-numbers":
       return <PdfPageNumbersTool locale={props.locale} />;
+    case "pdf-to-text":
+      return <PdfToTextTool locale={props.locale} />;
+    case "pdf-metadata-clean":
+      return <PdfMetadataCleanTool locale={props.locale} />;
     default:
       return null;
   }

@@ -97,6 +97,8 @@ const toolIcons: Record<ToolSlug, LucideIcon> = {
   "reorder-pdf-pages": ArrowUpDown,
   "pdf-watermark": Stamp,
   "pdf-page-numbers": FileDigit,
+  "pdf-to-text": ScanText,
+  "pdf-metadata-clean": Eraser,
   md5: Fingerprint,
   "file-md5": FileDigit,
   hmac: ShieldEllipsis,

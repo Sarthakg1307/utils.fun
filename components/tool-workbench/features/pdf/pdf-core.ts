@@ -188,6 +188,37 @@ export async function addPdfPageNumbers(file: File, options: PdfPageNumberOption
   return toPdfBlob(await document.save());
 }
 
+export async function extractPdfText(file: File | Blob) {
+  const document = await loadPdfPreviewDocument(file);
+  const pages: string[] = [];
+
+  for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
+    const page = await document.getPage(pageNumber);
+    const content = await page.getTextContent();
+    const text = content.items
+      .map((item) => ("str" in item ? item.str : ""))
+      .join(" ")
+      .trim();
+
+    pages.push(text);
+  }
+
+  return pages.filter(Boolean).join("\n\n");
+}
+
+export async function cleanPdfMetadata(file: File | Blob) {
+  const document = await PDFDocument.load(await file.arrayBuffer());
+
+  document.setTitle("");
+  document.setAuthor("");
+  document.setSubject("");
+  document.setProducer("");
+  document.setCreator("");
+  document.setKeywords([]);
+
+  return toPdfBlob(await document.save());
+}
+
 export async function imagesToPdf(files: File[]) {
   const document = await PDFDocument.create();
 

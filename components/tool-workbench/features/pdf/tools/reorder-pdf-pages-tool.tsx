@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, Download, LoaderCircle } from "lucide-react";
+import { ArrowDown, ArrowUp, LoaderCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,9 @@ import type { Locale } from "@/lib/tools";
 import { reorderPdfPages } from "../pdf-core";
 import { loadPdfPreviewDocument, type PdfPreviewDocument } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
+import { PdfResultPanel } from "../components/pdf-result-panel";
 import { PdfThumbnail } from "../components/pdf-thumbnail";
-import { downloadBlob, moveItem, t } from "../tool-utils";
+import { moveItem, t } from "../tool-utils";
 
 type ReorderPdfPagesToolProps = {
   locale: Locale;
@@ -133,13 +134,15 @@ export function ReorderPdfPagesTool({ locale }: ReorderPdfPagesToolProps) {
               {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
               {t(locale, "导出重排后的 PDF", "Export reordered PDF")}
             </Button>
-            {result ? (
-              <Button type="button" variant="outline" onClick={() => downloadBlob(result, "reordered.pdf")}>
-                <Download className="size-4" />
-                {t(locale, "下载结果", "Download result")}
-              </Button>
-            ) : null}
           </div>
+          {result ? (
+            <PdfResultPanel
+              locale={locale}
+              title={t(locale, "重排结果已生成", "Reordered PDF is ready")}
+              description={t(locale, "先翻页确认顺序是否符合预期，再决定导出方式。", "Flip through the reordered document first, then choose how you want to export it.")}
+              results={[{ blob: result, filename: "reordered.pdf" }]}
+            />
+          ) : null}
         </CardContent>
       </Card>
     </div>

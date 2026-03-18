@@ -211,6 +211,24 @@ export const enToolContent: ToolContentMap = {
       "Position control"
     ]
   },
+  "pdf-to-text": {
+    "title": "PDF to Text",
+    "description": "Extract readable text from a PDF locally after previewing the pages.",
+    "highlights": [
+      "Page preview",
+      "Readable output",
+      "Local extraction"
+    ]
+  },
+  "pdf-metadata-clean": {
+    "title": "PDF Metadata Clean",
+    "description": "Clear common PDF metadata fields and preview the cleaned document before export.",
+    "highlights": [
+      "Metadata cleanup",
+      "Preview first",
+      "Local export"
+    ]
+  },
   "md5": {
     "title": "Text MD5",
     "description": "Calculate text MD5 hashes and show lower/upper case variants.",

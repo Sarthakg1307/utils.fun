@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,8 @@ import { addPdfTextWatermark } from "../pdf-core";
 import { loadPdfPreviewDocument, type PdfPreviewDocument } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
 import { PdfPageGrid } from "../components/pdf-page-grid";
-import { downloadBlob, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { t } from "../tool-utils";
 
 type PdfWatermarkToolProps = {
   locale: Locale;
@@ -21,7 +22,7 @@ type PdfWatermarkToolProps = {
 export function PdfWatermarkTool({ locale }: PdfWatermarkToolProps) {
   const [file, setFile] = useState<File | null>(null);
   const [document, setDocument] = useState<PdfPreviewDocument | null>(null);
-  const [text, setText] = useState("CONFIDENTIAL");
+  const [text, setText] = useState("For Internal Review");
   const [fontSize, setFontSize] = useState(48);
   const [opacity, setOpacity] = useState(18);
   const [rotation, setRotation] = useState(45);
@@ -89,35 +90,35 @@ export function PdfWatermarkTool({ locale }: PdfWatermarkToolProps) {
           <div className="grid gap-4 md:grid-cols-2">
             <label className="space-y-2 text-sm">
               <span>{t(locale, "水印文字", "Watermark text")}</span>
-              <Input value={text} onChange={(event) => {
+              <Input name="watermark-text" value={text} onChange={(event) => {
                 setResult(null);
                 setText(event.target.value);
               }} />
             </label>
             <label className="space-y-2 text-sm">
               <span>{t(locale, "文字颜色", "Text color")}</span>
-              <Input type="color" value={color} onChange={(event) => {
+              <Input name="watermark-color" type="color" value={color} onChange={(event) => {
                 setResult(null);
                 setColor(event.target.value);
               }} />
             </label>
             <label className="space-y-2 text-sm">
               <span>{t(locale, "字号", "Font size")}</span>
-              <Input type="number" min={12} max={120} value={fontSize} onChange={(event) => {
+              <Input name="watermark-font-size" type="number" min={12} max={120} value={fontSize} onChange={(event) => {
                 setResult(null);
                 setFontSize(Number(event.target.value) || 48);
               }} />
             </label>
             <label className="space-y-2 text-sm">
               <span>{t(locale, "透明度（%）", "Opacity (%)")}</span>
-              <Input type="number" min={5} max={100} value={opacity} onChange={(event) => {
+              <Input name="watermark-opacity" type="number" min={5} max={100} value={opacity} onChange={(event) => {
                 setResult(null);
                 setOpacity(Number(event.target.value) || 18);
               }} />
             </label>
             <label className="space-y-2 text-sm">
               <span>{t(locale, "旋转角度", "Rotation")}</span>
-              <Input type="number" min={-180} max={180} value={rotation} onChange={(event) => {
+              <Input name="watermark-rotation" type="number" min={-180} max={180} value={rotation} onChange={(event) => {
                 setResult(null);
                 setRotation(Number(event.target.value) || 45);
               }} />
@@ -135,13 +136,15 @@ export function PdfWatermarkTool({ locale }: PdfWatermarkToolProps) {
               {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
               {t(locale, "导出加水印的 PDF", "Export watermarked PDF")}
             </Button>
-            {result ? (
-              <Button type="button" variant="outline" onClick={() => downloadBlob(result, "watermarked.pdf")}>
-                <Download className="size-4" />
-                {t(locale, "下载结果", "Download result")}
-              </Button>
-            ) : null}
           </div>
+          {result ? (
+            <PdfResultPanel
+              locale={locale}
+              title={t(locale, "水印结果已生成", "Watermarked PDF is ready")}
+              description={t(locale, "先看一眼水印密度和位置，再决定是否直接下载。", "Preview the watermark density and placement first, then decide whether to download it.")}
+              results={[{ blob: result, filename: "watermarked.pdf" }]}
+            />
+          ) : null}
         </CardContent>
       </Card>
     </div>

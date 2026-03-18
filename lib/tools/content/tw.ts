@@ -211,6 +211,24 @@ export const twToolContent: ToolContentMap = {
       "位置控制"
     ]
   },
+  "pdf-to-text": {
+    "title": "PDF 轉文本",
+    "description": "先預覽頁面，再把 PDF 中的可讀文字提取出來，適合歸檔和整理。",
+    "highlights": [
+      "頁面預覽",
+      "可讀文本輸出",
+      "本地提取"
+    ]
+  },
+  "pdf-metadata-clean": {
+    "title": "PDF 元數據清理",
+    "description": "清理常見 PDF 元數據字段，並在導出前先預覽清理後的結果。",
+    "highlights": [
+      "清理元數據",
+      "預覽優先",
+      "本地導出"
+    ]
+  },
   "md5": {
     "title": "文本 MD5 哈希",
     "description": "計算文本 MD5 值，並展示大小寫兩種結果。",

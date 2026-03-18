@@ -12,7 +12,8 @@ import { parseSplitRanges, splitPdf } from "../pdf-core";
 import { loadPdfPreviewDocument, type PdfPreviewDocument } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
 import { PdfPageGrid } from "../components/pdf-page-grid";
-import { downloadBlob, downloadBlobsAsZip, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { downloadBlobsAsZip, t } from "../tool-utils";
 
 type SplitPdfToolProps = {
   locale: Locale;
@@ -85,6 +86,7 @@ export function SplitPdfTool({ locale }: SplitPdfToolProps) {
           <CardHeader>{t(locale, "拆分设置", "Split settings")}</CardHeader>
           <CardContent className="space-y-4">
             <Input
+              name="split-ranges"
               value={rangesInput}
               onChange={(event) => setRangesInput(event.target.value)}
               placeholder="1-3, 5, 8-10"
@@ -99,12 +101,6 @@ export function SplitPdfTool({ locale }: SplitPdfToolProps) {
                 {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
                 {t(locale, "拆分 PDF", "Split PDF")}
               </Button>
-              {result?.length === 1 ? (
-                <Button type="button" variant="outline" onClick={() => downloadBlob(result[0], "split-part-1.pdf")}>
-                  <Download className="size-4" />
-                  {t(locale, "下载结果", "Download result")}
-                </Button>
-              ) : null}
               {result && result.length > 1 ? (
                 <Button
                   type="button"
@@ -122,6 +118,18 @@ export function SplitPdfTool({ locale }: SplitPdfToolProps) {
                 </Button>
               ) : null}
             </div>
+            {result ? (
+              <PdfResultPanel
+                locale={locale}
+                title={t(locale, "拆分结果已生成", "Split files are ready")}
+                description={t(locale, "每一段都可以单独预览、用新标签页打开，或者逐个下载。", "Each split result can be previewed, opened in a new tab, or downloaded individually.")}
+                results={result.map((blob, index) => ({
+                  blob,
+                  filename: `split-part-${index + 1}.pdf`,
+                  label: `${t(locale, "片段", "Part")} ${index + 1}`,
+                }))}
+              />
+            ) : null}
           </CardContent>
         </Card>
       ) : null}

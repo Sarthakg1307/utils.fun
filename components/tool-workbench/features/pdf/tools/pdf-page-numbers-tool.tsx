@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,8 @@ import {
 import { loadPdfPreviewDocument, type PdfPreviewDocument } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
 import { PdfPageGrid } from "../components/pdf-page-grid";
-import { downloadBlob, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { t } from "../tool-utils";
 
 type PdfPageNumbersToolProps = {
   locale: Locale;
@@ -44,7 +45,7 @@ const positionOptions: Array<{
 export function PdfPageNumbersTool({ locale }: PdfPageNumbersToolProps) {
   const [file, setFile] = useState<File | null>(null);
   const [document, setDocument] = useState<PdfPreviewDocument | null>(null);
-  const [prefix, setPrefix] = useState("Pg ");
+  const [prefix, setPrefix] = useState("Page ");
   const [start, setStart] = useState(1);
   const [fontSize, setFontSize] = useState(12);
   const [position, setPosition] = useState<PdfPageNumberPosition>("bottom-center");
@@ -110,21 +111,21 @@ export function PdfPageNumbersTool({ locale }: PdfPageNumbersToolProps) {
           <div className="grid gap-4 md:grid-cols-2">
             <label className="space-y-2 text-sm">
               <span>{t(locale, "页码前缀", "Page-number prefix")}</span>
-              <Input value={prefix} onChange={(event) => {
+              <Input name="page-number-prefix" value={prefix} onChange={(event) => {
                 setResult(null);
                 setPrefix(event.target.value);
               }} />
             </label>
             <label className="space-y-2 text-sm">
               <span>{t(locale, "起始页码", "Start number")}</span>
-              <Input type="number" min={1} value={start} onChange={(event) => {
+              <Input name="page-number-start" type="number" min={1} value={start} onChange={(event) => {
                 setResult(null);
                 setStart(Number(event.target.value) || 1);
               }} />
             </label>
             <label className="space-y-2 text-sm">
               <span>{t(locale, "字号", "Font size")}</span>
-              <Input type="number" min={8} max={48} value={fontSize} onChange={(event) => {
+              <Input name="page-number-font-size" type="number" min={8} max={48} value={fontSize} onChange={(event) => {
                 setResult(null);
                 setFontSize(Number(event.target.value) || 12);
               }} />
@@ -160,13 +161,15 @@ export function PdfPageNumbersTool({ locale }: PdfPageNumbersToolProps) {
               {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
               {t(locale, "导出带页码的 PDF", "Export numbered PDF")}
             </Button>
-            {result ? (
-              <Button type="button" variant="outline" onClick={() => downloadBlob(result, "page-numbers.pdf")}>
-                <Download className="size-4" />
-                {t(locale, "下载结果", "Download result")}
-              </Button>
-            ) : null}
           </div>
+          {result ? (
+            <PdfResultPanel
+              locale={locale}
+              title={t(locale, "页码结果已生成", "Numbered PDF is ready")}
+              description={t(locale, "先检查页码起始值和位置是否符合预期，再决定打开或下载。", "Check the start value and placement in preview before opening or downloading the result.")}
+              results={[{ blob: result, filename: "page-numbers.pdf" }]}
+            />
+          ) : null}
         </CardContent>
       </Card>
     </div>

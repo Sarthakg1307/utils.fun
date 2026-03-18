@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, ArrowUp, Download, LoaderCircle, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, LoaderCircle, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,8 @@ import type { Locale } from "@/lib/tools";
 
 import { imagesToPdf } from "../pdf-core";
 import { PdfDropzone } from "../components/pdf-dropzone";
-import { downloadBlob, moveItem, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { moveItem, t } from "../tool-utils";
 
 type ImagesToPdfToolProps = {
   locale: Locale;
@@ -129,13 +130,15 @@ export function ImagesToPdfTool({ locale }: ImagesToPdfToolProps) {
                 {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
                 {t(locale, "生成 PDF", "Create PDF")}
               </Button>
-              {result ? (
-                <Button type="button" variant="outline" onClick={() => downloadBlob(result, "images.pdf")}>
-                  <Download className="size-4" />
-                  {t(locale, "下载结果", "Download result")}
-                </Button>
-              ) : null}
             </div>
+            {result ? (
+              <PdfResultPanel
+                locale={locale}
+                title={t(locale, "PDF 已生成", "Your PDF is ready")}
+                description={t(locale, "先预览合成后的页面顺序，再决定下载或用新标签页继续查看。", "Preview the merged page order first, then download or keep reviewing it in a new tab.")}
+                results={[{ blob: result, filename: "images.pdf" }]}
+              />
+            ) : null}
           </CardContent>
         </Card>
       ) : null}

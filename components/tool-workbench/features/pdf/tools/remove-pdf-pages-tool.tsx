@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,8 @@ import { removePdfPages } from "../pdf-core";
 import { loadPdfPreviewDocument, type PdfPreviewDocument } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
 import { PdfPageGrid } from "../components/pdf-page-grid";
-import { downloadBlob, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { t } from "../tool-utils";
 
 type RemovePdfPagesToolProps = {
   locale: Locale;
@@ -109,13 +110,15 @@ export function RemovePdfPagesTool({ locale }: RemovePdfPagesToolProps) {
               {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
               {t(locale, "导出删页后的 PDF", "Export trimmed PDF")}
             </Button>
-            {result ? (
-              <Button type="button" variant="outline" onClick={() => downloadBlob(result, "trimmed.pdf")}>
-                <Download className="size-4" />
-                {t(locale, "下载结果", "Download result")}
-              </Button>
-            ) : null}
           </div>
+          {result ? (
+            <PdfResultPanel
+              locale={locale}
+              title={t(locale, "删页结果已生成", "Trimmed PDF is ready")}
+              description={t(locale, "先检查剩余页面是否完整，再选择打开或下载。", "Check that the remaining pages look right before opening or downloading the result.")}
+              results={[{ blob: result, filename: "trimmed.pdf" }]}
+            />
+          ) : null}
         </CardContent>
       </Card>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,8 @@ import { rotatePdf } from "../pdf-core";
 import { loadPdfPreviewDocument, type PdfPreviewDocument } from "../pdf-preview";
 import { PdfDropzone } from "../components/pdf-dropzone";
 import { PdfPageGrid } from "../components/pdf-page-grid";
-import { downloadBlob, t } from "../tool-utils";
+import { PdfResultPanel } from "../components/pdf-result-panel";
+import { t } from "../tool-utils";
 
 type RotatePdfToolProps = {
   locale: Locale;
@@ -93,13 +94,15 @@ export function RotatePdfTool({ locale }: RotatePdfToolProps) {
                 {busy ? <LoaderCircle className="size-4 animate-spin" /> : null}
                 {t(locale, "导出旋转后的 PDF", "Export rotated PDF")}
               </Button>
-              {result ? (
-                <Button type="button" variant="outline" onClick={() => downloadBlob(result, "rotated.pdf")}>
-                  <Download className="size-4" />
-                  {t(locale, "下载结果", "Download result")}
-                </Button>
-              ) : null}
             </div>
+            {result ? (
+              <PdfResultPanel
+                locale={locale}
+                title={t(locale, "旋转结果已生成", "Rotated PDF is ready")}
+                description={t(locale, "先在弹窗里翻页核对方向，再决定导出方式。", "Flip through the rotated pages in the preview before deciding how to export them.")}
+                results={[{ blob: result, filename: "rotated.pdf" }]}
+              />
+            ) : null}
           </CardContent>
         </Card>
       ) : null}
